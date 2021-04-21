@@ -15,11 +15,11 @@ class ShortenUrlAPI extends DataSource {
   }
 
   async addUrl({ url }) {
+    const { error, message } = await validateAndSanitzeUrl(url);
+
+    if (error) return new Error(message);
+
     try {
-      const { error, message } = await validateAndSanitzeUrl(url);
-
-      if (error) throw new Error(message);
-
       const { shortUrl } = await this.prisma.shortenUrl.upsert({
         where: {
           originalUrl: message,
@@ -36,7 +36,7 @@ class ShortenUrlAPI extends DataSource {
       });
       return shortUrl;
     } catch (error) {
-      console.log(error.message);
+      return error;
     }
   }
 
@@ -50,7 +50,7 @@ class ShortenUrlAPI extends DataSource {
 
       return urlExists;
     } catch (error) {
-      console.log(error);
+      return null;
     }
   }
 }

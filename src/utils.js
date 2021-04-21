@@ -14,15 +14,15 @@ exports.validateAndSanitzeUrl = async (str) => {
     const response = await got(str);
     let url = str;
     let responseUrl = response.request.gotOptions.hostname.split('.');
-    console.log();
 
     if (responseUrl[0] === 'www') {
       responseUrl.shift();
 
-      url = `${response.request.gotOptions.protocol}//${responseUrl.join(
-        '.'
-      )}/${response.request.gotOptions.path}`;
+      url = `${response.request.gotOptions.protocol}//${responseUrl.join('.')}${
+        response.request.gotOptions.path
+      }`;
     }
+    console.log(url);
 
     return { error: false, message: url };
   } catch (error) {

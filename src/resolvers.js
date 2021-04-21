@@ -16,6 +16,7 @@ const resolvers = {
     shortenURL: async (parent, args, { host, dataSources }, info) => {
       try {
         const url = await dataSources.shortenUrlAPI.addUrl(args);
+        console.log(url);
         return `${host}/${url}`;
       } catch (error) {
         return new ApolloError(error.message, 'QueryError');
