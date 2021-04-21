@@ -16,7 +16,7 @@ describe('Mutation: add url', () => {
     expect(shortUrl[shortUrl.length - 1].length).toEqual(6);
   });
 
-  test('Two URI written with or without www should return the same string', async () => {
+  test('The same URI--with or without www--should return the same string', async () => {
     const firstResponse = await axios.post('http://localhost:3000/graphiql', {
       query: `
       mutation {
@@ -37,14 +37,4 @@ describe('Mutation: add url', () => {
 
     expect(urlOne).toEqual(urlTwo);
   });
-
-  // test('Get all urls', async () => {
-  //   const response = await axios.post('http://localhost:3000/graphiql', {
-  //     query: `
-  //     query {
-  //     urls
-  //     }
-  //     `,
-  //   });
-  // });
 });

@@ -25,6 +25,8 @@ const server = new ApolloServer({
     };
   },
   dataSources,
+  introspection: true,
+  playground: true,
 });
 
 server.applyMiddleware({ app, path });
