@@ -1,3 +1,4 @@
+const { ApolloError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     info: () => 'Welcome to the backdrop coding challenge api',
@@ -5,7 +6,9 @@ const resolvers = {
       try {
         const urls = await dataSources.shortenUrlAPI.allUrls();
         return urls;
-      } catch (error) {}
+      } catch (error) {
+        return new ApolloError(error.message, 'QueryError');
+      }
     },
   },
 
@@ -14,7 +17,9 @@ const resolvers = {
       try {
         const url = await dataSources.shortenUrlAPI.addUrl(args);
         return `${host}/${url}`;
-      } catch (error) {}
+      } catch (error) {
+        return new ApolloError(error.message, 'QueryError');
+      }
     },
   },
 };

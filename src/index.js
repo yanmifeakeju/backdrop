@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+const { ApolloServer, ApolloError } = require('apollo-server-express');
 const { PrismaClient } = require('@prisma/client');
 
 const typeDefs = require('./schema');
@@ -27,6 +27,9 @@ const server = new ApolloServer({
   dataSources,
   introspection: true,
   playground: true,
+  formatError: (error) => {
+    new ApolloError(error.message || 'Error Occurred', 'ERROR');
+  },
 });
 
 server.applyMiddleware({ app, path });

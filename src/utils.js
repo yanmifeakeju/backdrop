@@ -18,6 +18,7 @@ exports.validateAndSanitzeUrl = async (str) => {
 
     if (responseUrl[0] === 'www') {
       responseUrl.shift();
+
       url = `${response.request.gotOptions.protocol}//${responseUrl.join(
         '.'
       )}/${response.request.gotOptions.path}`;
