@@ -7,7 +7,7 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    shortenUrl(url: String!): String!
+    shortenURL(url: String!): String!
   }
 
   type URL {

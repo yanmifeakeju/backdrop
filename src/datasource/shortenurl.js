@@ -34,7 +34,6 @@ class ShortenUrlAPI extends DataSource {
           shortUrl: generateSixUniqueChars(),
         },
       });
-      console.log(shortUrl);
       return shortUrl;
     } catch (error) {
       console.log(error.message);

@@ -2,11 +2,13 @@ const got = require('got');
 
 exports.validateAndSanitzeUrl = async (str) => {
   const regEx = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
-  if (!regEx.test(str))
+
+  if (!regEx.test(str)) {
     return {
       error: true,
       message: 'You have not provided a valid url with https or http',
     };
+  }
 
   try {
     const response = await got(str);

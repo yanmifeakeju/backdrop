@@ -10,7 +10,7 @@ const resolvers = {
   },
 
   Mutation: {
-    shortenUrl: async (parent, args, { host, dataSources }, info) => {
+    shortenURL: async (parent, args, { host, dataSources }, info) => {
       try {
         const url = await dataSources.shortenUrlAPI.addUrl(args);
 
